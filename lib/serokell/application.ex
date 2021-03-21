@@ -8,14 +8,20 @@ defmodule Serokell.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      Serokell.Repo,
+      # Serokell.Repo,
+
       # Start the Telemetry supervisor
       SerokellWeb.Telemetry,
+
       # Start the PubSub system
       {Phoenix.PubSub, name: Serokell.PubSub},
+
       # Start the Endpoint (http/https)
-      SerokellWeb.Endpoint
+      SerokellWeb.Endpoint,
+
       # Start a worker by calling: Serokell.Worker.start_link(arg)
+      Serokell.PullRequestWorker
+
       # {Serokell.Worker, arg}
     ]
 
